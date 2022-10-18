@@ -9,7 +9,7 @@ import java.util.List;
 
 public class BasePage {
 
-    private WebDriver driver;
+    WebDriver driver;
 
     public  BasePage(WebDriver driver){
         this.driver = driver;
