@@ -26,10 +26,10 @@ public class BasePage {
         return driver.findElement(locator);
     }
 
-    public void scrollDown(By locator){
+    public void scrollDown(By locator) throws InterruptedException {
         driver.findElement(locator).sendKeys(Keys.DOWN);
+        Thread.sleep(2000);
         driver.findElement(locator).sendKeys(Keys.RETURN);}
-
 
     public List<WebElement> findElements(By locator){
         return driver.findElements(locator);
@@ -42,7 +42,7 @@ public class BasePage {
     public String getText (By locator){
         return driver.findElement(locator).getText();
     }
-    //para escribir
+
     public void type(String inputText, By locator){
         driver.findElement(locator).sendKeys(inputText);
     }
