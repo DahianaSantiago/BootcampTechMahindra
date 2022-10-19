@@ -112,7 +112,8 @@ public class LoginPageTest {
     public void deleteReport() throws InterruptedException {
         employeePage = new EmployeePage(driver);
         reports = new Reports(driver);
-
+        loginPage.IncomeReport("Admin", "admin123");
+        reports.deleteReport();
 
     }
 }
