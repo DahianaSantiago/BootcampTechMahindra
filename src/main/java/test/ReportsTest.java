@@ -14,6 +14,7 @@ public class ReportsTest {
     LoginPage loginPage;
     Reports reports;
 
+
     @Before
     public void setUp() throws Exception {
         loginPage = new LoginPage(driver);
@@ -30,7 +31,8 @@ public class ReportsTest {
     @Title("Income Report ")
     @Test
     public void addReport() throws InterruptedException {
-        loginPage.Login("Admin","admin123");
+        reports = new Reports(driver);
+        loginPage.Login("Admin", "admin123");
         loginPage.IncomeReport();
         int random = (int) Math.rint(Math.random());
         reports.addReport("report number " + random);
@@ -40,10 +42,37 @@ public class ReportsTest {
     @Test
     public void deleteReport() throws InterruptedException {
         reports = new Reports(driver);
-        loginPage.Login("Admin","admin123");
+        loginPage.Login("Admin", "admin123");
         loginPage.IncomeReport();
         reports.deleteReport();
-        assertEquals(true,reports.validationMessage());
+        assertEquals(true, reports.validationMessage());
 
     }
+
+    @Title("Not Delete Report")
+    @Test
+    public void notDeleteReport() throws InterruptedException {
+        reports = new Reports(driver);
+        loginPage.Login("Admin", "admin123");
+        loginPage.IncomeReport();
+        reports.notDeleteReport();
+    }
+    @Title("modify Name Report")
+    @Test
+    public void modifyNameReport() throws InterruptedException {
+        reports = new Reports(driver);
+        loginPage.Login("Admin", "admin123");
+        loginPage.IncomeReport();
+        reports.modifyReport("etc");
+    }
+    @Title("Search Report")
+    @Test
+    public void searchNameReport() throws InterruptedException {
+        reports = new Reports(driver);
+        loginPage.Login("Admin", "admin123");
+        loginPage.IncomeReport();
+        reports.SearchReport("All");
+        assertEquals(true, reports.validationMessageReport());
+    }
+
 }
