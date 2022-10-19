@@ -1,31 +1,36 @@
 package test;
 
+import net.thucydides.core.annotations.Title;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.EmployeePage;
 import pages.LoginPage;
-import static org.junit.Assert.*;
+import pages.Reports;
+
+import static org.junit.Assert.assertEquals;
 
 public class LoginPageTest {
 
-   private WebDriver driver;
-   LoginPage loginPage;
-   EmployeePage employeePage;
+    private WebDriver driver;
+    LoginPage loginPage;
+    EmployeePage employeePage;
 
-       @Before
-       public void setUp() throws Exception{
+    Reports reports;
+
+    @Before
+    public void setUp() throws Exception {
         loginPage = new LoginPage(driver);
         driver = loginPage.chromeDriverConnection();
         loginPage.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         driver.manage().window().maximize();
+
        }
 
-       @After
-       public void tearDown() throws Exception{
+
+    @After
+    public void tearDown() throws Exception {
         driver.close();
        }
 
@@ -90,4 +95,24 @@ public class LoginPageTest {
 
         }
 
- }
+
+    @Title("Income Report ")
+    @Test
+    public void addReport() throws InterruptedException {
+        employeePage = new EmployeePage(driver);
+        reports = new Reports(driver);
+        loginPage.IncomeReport("Admin", "admin123");
+        int random = (int) Math.rint(Math.random());
+        reports.addReport("report number seven" + random);
+
+    }
+
+    @Title("Deleye Report")
+    @Test
+    public void deleteReport() throws InterruptedException {
+        employeePage = new EmployeePage(driver);
+        reports = new Reports(driver);
+
+
+    }
+}

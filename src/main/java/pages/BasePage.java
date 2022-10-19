@@ -30,8 +30,9 @@ public class BasePage {
         driver.findElement(locator).sendKeys(Keys.DOWN);
         driver.findElement(locator).sendKeys(Keys.RETURN);}
 
+
     public List<WebElement> findElements(By locator){
-        return driver.findElement(locator);
+        return driver.findElements(locator);
     }
 
     public String getText (WebElement element){

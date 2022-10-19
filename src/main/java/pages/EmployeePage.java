@@ -10,12 +10,17 @@ public class EmployeePage extends BasePage{
     }
 
     By addButton = By.xpath("//button[text()=' Add ']");
+
+
     By ValidationName = By.className(("oxd-text oxd-text--h6 --strong"));
+
     By validationNumber = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[2]/div/div/div[2]/input");
+
     By secondValidationNumber = By.xpath("(//input[@class='oxd-input oxd-input--active'])[3]");
     By nameEmployee = By.name("firstName");
     By lastNameEmployee = By.name("lastName");
     By saveButton = By.xpath("//button[text()=' Save ']");
+
     By searchEmployeeField = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[2]/div/div[2]/input");
     By searchEmployeeButton = By.xpath("//button[text()=' Search ']");
     By idNumberSearch = By.xpath("//div[text()='0046']");
@@ -27,12 +32,12 @@ public class EmployeePage extends BasePage{
 
 
 
+
     public void addEmployee(String name , String lastName) throws InterruptedException {
         click(addButton);
         type(name,nameEmployee);
         type(lastName,lastNameEmployee);
-        System.out.printf(validationNumber+"es :");
-        //type(id,validationNumber);
+        System.out.println(getText(validationNumber));
         Thread.sleep(3000);
         click(saveButton);
     }
@@ -65,6 +70,7 @@ public class EmployeePage extends BasePage{
     public String validateId(){return getText(idNumberSearch);}
 
     public By referenceNumber(){ return validationNumber;}
+
 
     public String validateNumber(){return getText(secondValidationNumber);
 
