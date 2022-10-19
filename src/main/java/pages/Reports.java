@@ -23,6 +23,7 @@ public class Reports extends BasePage{
     By record = By.xpath("(//*[@class='oxd-icon bi-trash'])[1]");
     By deleteRecord = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[1]/div/div[3]/div/button[1]/i");
     By yesDelete = By.xpath("//button[text()=' Yes, Delete ']");
+    By validationDelete = By.xpath("/html/body/div/div[2]");
 
     public void addReport(String report) throws InterruptedException {
         click(addButton);
@@ -41,5 +42,8 @@ public class Reports extends BasePage{
         Thread.sleep(1000);
         click(deleteRecord);
         click(yesDelete);
+        Thread.sleep(1000);
     }
+
+    public Boolean validationMessage(){return isDisplayed(validationDelete);}
 }

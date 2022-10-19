@@ -7,8 +7,6 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import pages.EmployeePage;
 import pages.LoginPage;
-import pages.Reports;
-
 import static org.junit.Assert.assertEquals;
 
 public class LoginPageTest {
@@ -16,7 +14,7 @@ public class LoginPageTest {
     private WebDriver driver;
     LoginPage loginPage;
     EmployeePage employeePage;
-    Reports reports;
+
 
     @Before
     public void setUp() throws Exception {
@@ -84,22 +82,6 @@ public class LoginPageTest {
             employeePage = new EmployeePage(driver);
             loginPage.Login("Admin","admin123");
             employeePage.searchEmployeeWithNames();
+        }
 
-        }
-        @Title("Income Report ")
-        @Test
-         public void addReport() throws InterruptedException {
-            loginPage.Login("Admin","admin123");
-            loginPage.IncomeReport();
-            int random = (int) Math.rint(Math.random());
-            reports.addReport("report number seven" + random);
-         }
-        @Title("Delete Report")
-        @Test
-        public void deleteReport() throws InterruptedException {
-            reports = new Reports(driver);
-            loginPage.Login("Admin","admin123");
-            loginPage.IncomeReport();
-            reports.deleteReport();
-        }
 }

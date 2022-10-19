@@ -38,7 +38,8 @@ public class LoginPage extends BasePage {
         click(loginSuccessful);
         click(logout);
     }
-    public void IncomeReport () {
+    public void IncomeReport () throws InterruptedException {
         click(incomeReports);
+        Thread.sleep(1000);
     }
 }
