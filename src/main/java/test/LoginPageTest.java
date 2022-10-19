@@ -22,13 +22,13 @@ public class LoginPageTest {
         driver = loginPage.chromeDriverConnection();
         loginPage.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         driver.manage().window().maximize();
-
        }
 
        @After
        public void tearDown() throws Exception{
         driver.close();
        }
+
        @Test
        public void loginSuccessful() throws InterruptedException {
         loginPage.Login("Admin","admin123");
@@ -51,15 +51,43 @@ public class LoginPageTest {
            loginPage.Logout();
            assertEquals(true,loginPage.logoutSuccessful());
        }
-
-        @Test
-    public void addEmployee() throws InterruptedException {
+       @Test
+        public void addEmployee() throws InterruptedException {
            employeePage = new EmployeePage(driver);
            loginPage.Login("Admin","admin123");
            employeePage.addEmployee("Dahia","Santiago");
+
            //String idNumber = employeePage.referenceNumber();
            // System.out.println(idNumber);
           // assertEquals(employeePage.referenceNumber(),employeePage.validateNumber());
+        }
+        @Test
+        public void searchEmployee() throws InterruptedException {
+            employeePage = new EmployeePage(driver);
+            loginPage.Login("Admin","admin123");
+            employeePage.serchEmployee("0046");
+            assertEquals("0046",employeePage.validateId());
+        }
+        @Test
+         public void searchNoEmployee() throws InterruptedException {
+            employeePage = new EmployeePage(driver);
+            loginPage.Login("Admin","admin123");
+            employeePage.serchEmployee("000000");
+            assertEquals("No Records Found",employeePage.validateNoFound());
+        }
+        @Test
+        public void deleteEmployee() throws InterruptedException {
+            employeePage = new EmployeePage(driver);
+            loginPage.Login("Admin","admin123");
+            employeePage.deleteEmployee();
+            assertEquals(true,employeePage.deleteEmployeeValidation());
+        }
+        @Test
+        public void searchEmployeeWithName() throws InterruptedException {
+            employeePage = new EmployeePage(driver);
+            loginPage.Login("Admin","admin123");
+            employeePage.searchEmployeeWithNames();
+
         }
 
  }

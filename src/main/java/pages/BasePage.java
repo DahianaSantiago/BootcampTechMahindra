@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,6 +25,10 @@ public class BasePage {
     public WebElement findElement(By locator){
         return driver.findElement(locator);
     }
+
+    public void scrollDown(By locator){
+        driver.findElement(locator).sendKeys(Keys.DOWN);
+        driver.findElement(locator).sendKeys(Keys.RETURN);}
 
     public List<WebElement> findElements(By locator){
         return driver.findElement(locator);
@@ -56,4 +61,6 @@ public class BasePage {
     public void visit(String url){
         driver.get(url);
     }
+
+
 }
