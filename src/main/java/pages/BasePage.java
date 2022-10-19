@@ -1,6 +1,8 @@
 package pages;
 
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,8 +27,10 @@ public class BasePage {
         return driver.findElement(locator);
     }
 
+    public void sendKeys (By locator){ driver.findElement(locator).sendKeys();}
+
     public List<WebElement> findElements(By locator){
-        return driver.findElement(locator);
+        return driver.findElements(locator);
     }
 
     public String getText (WebElement element){

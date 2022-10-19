@@ -21,6 +21,7 @@ public class LoginPage extends BasePage {
     By logout = By.xpath("(//a[@class='oxd-userdropdown-link'])[4]");
 
     By logoutSuccessful = By.className("oxd-text oxd-text--h5 orangehrm-login-title");
+    By incomeReports = By.xpath("//a[text()='Reports']");
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -41,5 +42,14 @@ public class LoginPage extends BasePage {
         Thread.sleep(1000);
         click(loginSuccessful);
         click(logout);
+    }
+    public void IncomeReport (String user, String psw) throws InterruptedException {
+
+        Thread.sleep(3000);
+        type(user,userName);
+        type(psw,password);
+        click(loginButton);
+        click(incomeReports);
+
     }
 }
