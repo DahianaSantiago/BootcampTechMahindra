@@ -26,7 +26,7 @@ public class EmployeePage extends BasePage{
     By idNumberSearch = By.xpath("//div[text()='0046']");
     By noFoundEmployee = By.xpath("//span[text()='No Records Found']");
     By deleteEmployee = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[1]/div/div[9]/div/button[1]");
-    By getDeleteEmployeeButton = By.xpath("//button[text()=' Yes, Delete ']");
+    By DeleteEmployeeButton = By.xpath("//button[text()=' Yes, Delete ']");
     By deleteMessage = By.xpath("/html/body/div/div[2]/div");
     By SearchEmployeeWithName = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input");
 
@@ -52,7 +52,7 @@ public class EmployeePage extends BasePage{
 
     public void deleteEmployee() throws InterruptedException {
         click(deleteEmployee);
-        click(getDeleteEmployeeButton);
+        click(DeleteEmployeeButton);
         Thread.sleep(2000);
     }
 

@@ -16,7 +16,6 @@ public class LoginPageTest {
     private WebDriver driver;
     LoginPage loginPage;
     EmployeePage employeePage;
-
     Reports reports;
 
     @Before
@@ -27,13 +26,10 @@ public class LoginPageTest {
         driver.manage().window().maximize();
 
        }
-
-
     @After
     public void tearDown() throws Exception {
         driver.close();
        }
-
        @Test
        public void loginSuccessful() throws InterruptedException {
         loginPage.Login("Admin","admin123");
@@ -61,10 +57,6 @@ public class LoginPageTest {
            employeePage = new EmployeePage(driver);
            loginPage.Login("Admin","admin123");
            employeePage.addEmployee("Dahia","Santiago");
-
-           //String idNumber = employeePage.referenceNumber();
-           // System.out.println(idNumber);
-          // assertEquals(employeePage.referenceNumber(),employeePage.validateNumber());
         }
         @Test
         public void searchEmployee() throws InterruptedException {
@@ -94,26 +86,20 @@ public class LoginPageTest {
             employeePage.searchEmployeeWithNames();
 
         }
-
-
-    @Title("Income Report ")
-    @Test
-    public void addReport() throws InterruptedException {
-        employeePage = new EmployeePage(driver);
-        reports = new Reports(driver);
-        loginPage.IncomeReport("Admin", "admin123");
-        int random = (int) Math.rint(Math.random());
-        reports.addReport("report number seven" + random);
-
-    }
-
-    @Title("Deleye Report")
-    @Test
-    public void deleteReport() throws InterruptedException {
-        employeePage = new EmployeePage(driver);
-        reports = new Reports(driver);
-        loginPage.IncomeReport("Admin", "admin123");
-        reports.deleteReport();
-
-    }
+        @Title("Income Report ")
+        @Test
+         public void addReport() throws InterruptedException {
+            loginPage.Login("Admin","admin123");
+            loginPage.IncomeReport();
+            int random = (int) Math.rint(Math.random());
+            reports.addReport("report number seven" + random);
+         }
+        @Title("Delete Report")
+        @Test
+        public void deleteReport() throws InterruptedException {
+            reports = new Reports(driver);
+            loginPage.Login("Admin","admin123");
+            loginPage.IncomeReport();
+            reports.deleteReport();
+        }
 }
