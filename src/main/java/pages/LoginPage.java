@@ -38,13 +38,7 @@ public class LoginPage extends BasePage {
         click(loginSuccessful);
         click(logout);
     }
-    public void IncomeReport (String user, String psw) throws InterruptedException {
-
-        Thread.sleep(3000);
-        type(user,userName);
-        type(psw,password);
-        click(loginButton);
+    public void IncomeReport () {
         click(incomeReports);
-
     }
 }
