@@ -29,7 +29,7 @@ public class AdminTest {
         driver.close();
     }
 
-    @Title("Search System User With Username")
+    @Title("Search system user with username")
     @Test
     public void searchUser() throws InterruptedException {
         adminPage = new AdminPage(driver);
@@ -38,7 +38,7 @@ public class AdminTest {
         adminPage.searchUserWithUserName();
         assertEquals("Alice.Duval",adminPage.validationName());
     }
-    @Title("Search System User With Role")
+    @Title("Search system user with role")
     @Test
     public void searchRole() throws InterruptedException {
         adminPage = new AdminPage(driver);
@@ -46,6 +46,25 @@ public class AdminTest {
         loginPage.admin();
         adminPage.searchUserWithRole();
         assertEquals("ESS",adminPage.roleValidation());
+    }
+
+    @Title("Edit job in admin")
+    @Test
+    public void editJob() throws InterruptedException {
+        adminPage = new AdminPage(driver);
+        loginPage.Login("Admin", "admin123");
+        loginPage.admin();
+        adminPage.editJob();
+        assertEquals(true,adminPage.validationMessageJob());
+    }
+
+    @Title("Add new admin")
+    @Test
+    public void addNewAdmin() throws InterruptedException {
+        adminPage = new AdminPage(driver);
+        loginPage.Login("Admin", "admin123");
+        loginPage.admin();
+        adminPage.addAdmin();
     }
 
 
