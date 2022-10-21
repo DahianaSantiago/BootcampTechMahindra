@@ -1,14 +1,11 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import javax.swing.table.TableRowSorter;
-import java.util.ArrayList;
 import java.util.List;
+import static utils.Constants.*;
 
 public class AdminPage extends BasePage{
 
@@ -18,14 +15,20 @@ public class AdminPage extends BasePage{
     By usernameField = By.xpath("(//input[@class='oxd-input oxd-input--active'])[2]");
     By searchButton = By.xpath("//button[text()=' Search ']");
     By nameValidation = By.xpath("//div[text()='Alice.Duval']");
+
+    //Add new admin
     By add = By.xpath("//button[text()=' Add ']");
-    //By clicKCategories = By.cssSelector("div.oxd-select-text--after");
+    By employeeName = By.cssSelector("div[class^='oxd-autocomplete-text-input'] > input");
+    By userName = By.cssSelector("div[class$='oxd-input-field-bottom-space'] > div>input");
+    By password = By.xpath("(//input[@type='password'])[1]");
+    By confirmPassword = By.xpath("(//input[@type='password'])[2]");
+    By selectName = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/div/div[2]/div/div[2]/div/span");
     @FindBy(css = "div.oxd-select-text--after")
             public List<WebElement> categories;
-
     @FindBy(css= "div.oxd-select-option")
-            public List<WebElement> options;
-
+            public List<WebElement> optionsRole;
+    @FindBy(css= "div.oxd-select-option")
+            public List<WebElement> optionsStatus;
     //Whit Role
     By role = By.xpath("(//div[text()='-- Select --'])[1]");
     By ESSSelect = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[2]/div/div[2]/div/div[2]/div[3]");
@@ -66,14 +69,24 @@ public class AdminPage extends BasePage{
         Thread.sleep(1000);
         click(add);
         categories.get(0).click();
+        optionsRole.get(1).click();
+        categories.get(1).click();
+        optionsStatus.get(1).click();
+        type(NAME,employeeName);
+        Thread.sleep(2000);
+        click(selectName);
+        int random = (int) Math.rint(Math.random()*10);
+        type(USERNAME + random,userName);
         Thread.sleep(3000);
-        options.get(1).click();
+        type(PASSWORD, password);
+        type(PASSWORD, confirmPassword);
+        click(buttonSave);
         Thread.sleep(2000);
     }
     public String validationName(){return getText(nameValidation); }
 
     public String roleValidation(){return getText(roleValidation);}
 
-    public Boolean validationMessageJob(){return isDisplayed(validationMessage);}
+    public Boolean validationMessage(){return isDisplayed(validationMessage);}
 
 }

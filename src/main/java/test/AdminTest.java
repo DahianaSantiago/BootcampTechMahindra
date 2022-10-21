@@ -55,7 +55,7 @@ public class AdminTest {
         loginPage.Login("Admin", "admin123");
         loginPage.admin();
         adminPage.editJob();
-        assertEquals(true,adminPage.validationMessageJob());
+        assertEquals(true,adminPage.validationMessage());
     }
 
     @Title("Add new admin")
@@ -65,6 +65,7 @@ public class AdminTest {
         loginPage.Login("Admin", "admin123");
         loginPage.admin();
         adminPage.addAdmin();
+        assertEquals(true,adminPage.validationMessage());
     }
 
 
