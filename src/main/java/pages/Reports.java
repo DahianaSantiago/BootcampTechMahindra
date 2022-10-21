@@ -1,6 +1,7 @@
 package pages;
 
 import net.serenitybdd.screenplay.BackendTask;
+import net.serenitybdd.screenplay.waits.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -36,6 +37,7 @@ public class Reports extends BasePage {
 
     By searchButton = By.xpath("//button[text()=' Search ']");
     By searchText = By.xpath("(//div[@class='oxd-table-cell oxd-padding-cell'])[2]");
+
     public void addReport(String report) throws InterruptedException {
         Thread.sleep(1000);
         click(addButton);

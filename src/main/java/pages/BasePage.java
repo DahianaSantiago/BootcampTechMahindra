@@ -1,67 +1,88 @@
 package pages;
 
+import net.serenitybdd.screenplay.actions.WebElementLocator;
+import org.awaitility.core.ConditionTimeoutException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import java.util.List;
+
 
 public class BasePage {
 
     WebDriver driver;
+    private static WebDriverWait wait;
 
-    public  BasePage(WebDriver driver){
+    public BasePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
-    public WebDriver chromeDriverConnection(){
-        System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+    public WebDriver chromeDriverConnection() {
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
         return driver;
     }
 
-    public WebElement findElement(By locator){
+    public WebElement findElement(By locator) {
         return driver.findElement(locator);
     }
 
     public void scrollDown(By locator) throws InterruptedException {
         driver.findElement(locator).sendKeys(Keys.DOWN);
         Thread.sleep(2000);
-        driver.findElement(locator).sendKeys(Keys.RETURN);}
+        driver.findElement(locator).sendKeys(Keys.RETURN);
+    }
 
-    public List<WebElement> findElements(By locator){
+    public List<WebElement> findElements(By locator) {
         return driver.findElements(locator);
     }
 
-    public String getText (WebElement element){
+    public String getText(WebElement element) {
         return element.getText();
     }
 
-    public String getText (By locator){
+    public String getText(By locator) {
         return driver.findElement(locator).getText();
     }
 
-    public void type(String inputText, By locator){
+    public void type(String inputText, By locator) {
         driver.findElement(locator).sendKeys(inputText);
     }
 
-    public void click(By locator){
+    public void click(By locator) {
         driver.findElement(locator).click();
     }
 
-    public Boolean isDisplayed(By locator){
-        try{
+    protected void WaitUntilElementVisible(By element) {
+        wait.until(ExpectedConditions.visibilityOf((WebElement) element));
+        ((WebElement) element).isDisplayed();
+    }
+
+    public Boolean isDisplayed(By locator) {
+        try {
             return driver.findElement(locator).isDisplayed();
-        }catch (org.openqa.selenium.NoSuchElementException e){
+        } catch (org.openqa.selenium.NoSuchElementException e) {
             return false;
         }
     }
 
-    public void visit(String url){
+    protected boolean isVisible(WebElement webElement) {
+        try {
+            return webElement.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void visit(String url) {
         driver.get(url);
     }
 

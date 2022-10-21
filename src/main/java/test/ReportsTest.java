@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import pages.Reports;
+
 import static org.junit.Assert.assertEquals;
 
 public class ReportsTest {
@@ -57,6 +58,7 @@ public class ReportsTest {
         loginPage.IncomeReport();
         reports.notDeleteReport();
     }
+
     @Title("modify Name Report")
     @Test
     public void modifyNameReport() throws InterruptedException {
@@ -65,6 +67,7 @@ public class ReportsTest {
         loginPage.IncomeReport();
         reports.modifyReport("etc");
     }
+
     @Title("Search Report")
     @Test
     public void searchNameReport() throws InterruptedException {
