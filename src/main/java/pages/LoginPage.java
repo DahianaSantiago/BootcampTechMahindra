@@ -22,30 +22,42 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
+
     public void Login(String user, String psw) throws InterruptedException {
         Thread.sleep(3000);
-        type(user,userName);
-        type(psw,password);
+        type(user, userName);
+        type(psw, password);
         click(loginButton);
     }
-    public Boolean loginSuccessful(){return isDisplayed(loginSuccessful);
+
+    public Boolean loginSuccessful() {
+        return isDisplayed(loginSuccessful);
     }
-    public Boolean logoutSuccessful(){return isDisplayed(userName);}
-    public String loginNotSuccessful(){return getText(loginUnsuccessful);
+
+    public Boolean logoutSuccessful() {
+        return isDisplayed(userName);
     }
-    public String withoutCredentials(){return getText(requiredField);}
+
+    public String loginNotSuccessful() {
+        return getText(loginUnsuccessful);
+    }
+
+    public String withoutCredentials() {
+        return getText(requiredField);
+    }
 
     public void Logout() throws InterruptedException {
         Thread.sleep(1000);
         click(loginSuccessful);
         click(logout);
     }
-    public void IncomeReport () throws InterruptedException {
+
+    public void IncomeReport() throws InterruptedException {
         click(incomeReports);
         Thread.sleep(1000);
     }
 
-    public void admin(){
+    public void admin() {
         click(adminButton);
     }
 }
