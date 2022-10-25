@@ -61,9 +61,9 @@ public class BasePage {
         driver.findElement(locator).click();
     }
 
-    protected void WaitUntilElementVisible(By element) {
-        wait.until(ExpectedConditions.visibilityOf((WebElement) element));
-        ((WebElement) element).isDisplayed();
+    protected void WaitUntilElementVisible(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        (element).isDisplayed();
     }
 
     public Boolean isDisplayed(By locator) {
