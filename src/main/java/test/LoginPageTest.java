@@ -2,6 +2,7 @@ package test;
 
 import net.thucydides.core.annotations.Title;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -34,13 +35,15 @@ public class LoginPageTest {
     @Title("Login Successful")
     @Test
     public void loginSuccessful() throws InterruptedException {
+        loginPage = new LoginPage(driver);
         loginPage.Login("Admin", "admin123");
-        assertEquals(true, loginPage.loginSuccessful());
+        Assert.assertEquals(true,loginPage.loginSuccessful);
     }
 
     @Title("Login No Successful")
     @Test
     public void loginNotSuccessful() throws InterruptedException {
+        loginPage = new LoginPage(driver);
         loginPage.Login("Admin", "noadmin123");
         Thread.sleep(2000);
         assertEquals("Invalid credentials", loginPage.loginNotSuccessful());
@@ -49,6 +52,7 @@ public class LoginPageTest {
     @Title("Login without credencials")
     @Test
     public void loginWithoutCredencials() throws InterruptedException {
+        loginPage = new LoginPage(driver);
         loginPage.Login("", "");
         assertEquals("Required", loginPage.withoutCredentials());
     }
@@ -56,14 +60,16 @@ public class LoginPageTest {
     @Title("Logout Successful")
     @Test
     public void logout() throws InterruptedException {
+        loginPage = new LoginPage(driver);
         loginPage.Login("Admin", "admin123");
         loginPage.Logout();
-        assertEquals(true, loginPage.logoutSuccessful());
+        Assert.assertEquals(true,loginPage.loginSuccessful);
     }
 
     @Title("Add new employee")
     @Test
     public void addEmployee() throws InterruptedException {
+        loginPage = new LoginPage(driver);
         employeePage = new EmployeePage(driver);
         loginPage.Login("Admin", "admin123");
         employeePage.addEmployee("Dahia", "Santiago");
@@ -72,6 +78,7 @@ public class LoginPageTest {
     @Title("Search an employee")
     @Test
     public void searchEmployee() throws InterruptedException {
+        loginPage = new LoginPage(driver);
         employeePage = new EmployeePage(driver);
         loginPage.Login("Admin", "admin123");
         employeePage.serchEmployee("0217");
@@ -81,6 +88,7 @@ public class LoginPageTest {
     @Title("Search for non existent employee")
     @Test
     public void searchNoEmployee() throws InterruptedException {
+        loginPage = new LoginPage(driver);
         employeePage = new EmployeePage(driver);
         loginPage.Login("Admin", "admin123");
         employeePage.serchEmployee("000000");
@@ -90,6 +98,7 @@ public class LoginPageTest {
     @Title("Delete an employee")
     @Test
     public void deleteEmployee() throws InterruptedException {
+        loginPage = new LoginPage(driver);
         employeePage = new EmployeePage(driver);
         loginPage.Login("Admin", "admin123");
         employeePage.deleteEmployee();

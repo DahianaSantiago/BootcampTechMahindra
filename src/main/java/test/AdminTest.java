@@ -2,6 +2,7 @@ package test;
 
 import net.thucydides.core.annotations.Title;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -30,14 +31,15 @@ public class AdminTest {
         driver.close();
     }
 
-    @Title("Search system user with username")
+   @Title("Search system user with username")
     @Test
     public void searchUser() throws InterruptedException {
         adminPage = new AdminPage(driver);
         loginPage.Login("Admin", "admin123");
         loginPage.admin();
         adminPage.searchUserWithUserName();
-        assertEquals("Alice.Duval", adminPage.validationName());
+        Assert.assertEquals("Alice.Duval",adminPage.validationNames());
+
     }
 
     @Title("Search system user with role")
@@ -47,7 +49,7 @@ public class AdminTest {
         loginPage.Login("Admin", "admin123");
         loginPage.admin();
         adminPage.searchUserWithRole();
-        assertEquals("ESS", adminPage.roleValidation());
+        Assert.assertEquals("ESS", adminPage.roleValidation());
     }
 
     @Title("Edit job in admin")
@@ -57,7 +59,7 @@ public class AdminTest {
         loginPage.Login("Admin", "admin123");
         loginPage.admin();
         adminPage.editJob();
-        assertEquals(true, adminPage.validationMessage());
+        Assert.assertEquals(true,adminPage.validationMessageAssert());
     }
 
     @Title("Add new admin")
@@ -67,7 +69,7 @@ public class AdminTest {
         loginPage.Login("Admin", "admin123");
         loginPage.admin();
         adminPage.addAdmin();
-        assertEquals(true, adminPage.validationMessage());
+        Assert.assertEquals(true, adminPage.validationMessageAssert());
     }
 
     @Title("Delete user")
@@ -77,7 +79,7 @@ public class AdminTest {
         loginPage.Login("Admin", "admin123");
         loginPage.admin();
         adminPage.deleteUser();
-        assertEquals(true, adminPage.validationMessage());
+        assertEquals(true, adminPage.validationMessageAssert());
     }
 
     @Title("Delete admin")
@@ -87,7 +89,7 @@ public class AdminTest {
         loginPage.Login("Admin", "admin123");
         loginPage.admin();
         adminPage.deleteAdmin();
-        assertEquals(true, adminPage.validationMessage());
+        assertEquals(true, adminPage.validationMessageAssert());
     }
 
 

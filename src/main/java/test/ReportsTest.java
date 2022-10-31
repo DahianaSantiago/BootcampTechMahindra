@@ -2,18 +2,19 @@ package test;
 
 import net.thucydides.core.annotations.Title;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
-import pages.Reports;
+import pages.ReportsPage;
 
 import static org.junit.Assert.assertEquals;
 
 public class ReportsTest {
     private WebDriver driver;
     LoginPage loginPage;
-    Reports reports;
+    ReportsPage reports;
 
 
     @Before
@@ -32,7 +33,8 @@ public class ReportsTest {
     @Title("Income Report ")
     @Test
     public void addReport() throws InterruptedException {
-        reports = new Reports(driver);
+        loginPage = new LoginPage(driver);
+        reports = new ReportsPage(driver);
         loginPage.Login("Admin", "admin123");
         loginPage.IncomeReport();
         int random = (int) Math.rint(Math.random());
@@ -42,18 +44,19 @@ public class ReportsTest {
     @Title("Delete Report")
     @Test
     public void deleteReport() throws InterruptedException {
-        reports = new Reports(driver);
+        loginPage = new LoginPage(driver);
+        reports = new ReportsPage(driver);
         loginPage.Login("Admin", "admin123");
         loginPage.IncomeReport();
         reports.deleteReport();
-        assertEquals(true, reports.validationMessage());
+        Assert.assertEquals(true, reports.validationMessage());
 
     }
 
     @Title("Not Delete Report")
     @Test
     public void notDeleteReport() throws InterruptedException {
-        reports = new Reports(driver);
+        reports = new ReportsPage(driver);
         loginPage.Login("Admin", "admin123");
         loginPage.IncomeReport();
         reports.notDeleteReport();
@@ -62,7 +65,7 @@ public class ReportsTest {
     @Title("modify Name Report")
     @Test
     public void modifyNameReport() throws InterruptedException {
-        reports = new Reports(driver);
+        reports = new ReportsPage(driver);
         loginPage.Login("Admin", "admin123");
         loginPage.IncomeReport();
         reports.modifyReport("etc");
@@ -71,11 +74,12 @@ public class ReportsTest {
     @Title("Search Report")
     @Test
     public void searchNameReport() throws InterruptedException {
-        reports = new Reports(driver);
+        loginPage = new LoginPage(driver);
+        reports = new ReportsPage(driver);
         loginPage.Login("Admin", "admin123");
         loginPage.IncomeReport();
         reports.SearchReport("All");
-        assertEquals(true, reports.validationMessageReport());
+        Assert.assertEquals(true, reports.validationMessageReport());
     }
 
 }
