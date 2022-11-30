@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -16,7 +15,7 @@ public class BasePage {
     protected WebDriver driver;
     public Wait<WebDriver> wait;
 
-    public BasePage (WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
@@ -37,27 +36,4 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.isDisplayed();
     }
-
-
-   public WebDriver chromeDriverConnection() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        driver = new ChromeDriver();
-        return driver;
-    }
-
-
-    protected boolean isVisible(WebElement webElement) {
-        try {
-            return webElement.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public void visit(String url) {
-        driver.get(url);
-    }
-
-
-
 }

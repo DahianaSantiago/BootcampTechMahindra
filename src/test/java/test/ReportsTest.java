@@ -5,65 +5,53 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.EmployeePage;
 import pages.LoginPage;
 import pages.ReportsPage;
 
 import static test.BasePageTest.driver;
 
 
-public class ReportsTest {
-
-    LoginPage loginPage;
-    ReportsPage reports;
-
+public class ReportsTest extends BasePageTest{
 
 
     @Test
-    public void addReport() throws InterruptedException {
-      //  loginPage = new LoginPage(driver);
-        reports = new ReportsPage(driver);
-        loginPage.Login("Admin", "admin123");
-        loginPage.incomeReport();
+    public void addReport() {
+        ReportsPage reportsPage = new ReportsPage(driver);
+        logInReport("Admin", "admin123");
         int random = (int) Math.rint(Math.random());
-        reports.addReport("report number " + random);
+        reportsPage.addReport("report number " + random);
     }
 
     @Test
-    public void deleteReport() throws InterruptedException {
-        loginPage = new LoginPage(driver);
-        reports = new ReportsPage(driver);
-        loginPage.Login("Admin", "admin123");
-        loginPage.incomeReport();
-        reports.deleteReport();
-        Assert.assertEquals(true, reports.validationMessage());
+    public void deleteReport(){
+        ReportsPage reportsPage = new ReportsPage(driver);
+        logInReport("Admin", "admin123");
+        reportsPage.deleteReport();
+        Assert.assertEquals(true, reportsPage.validationMessage());
 
     }
 
-
     @Test
-    public void notDeleteReport() throws InterruptedException {
-        reports = new ReportsPage(driver);
-        loginPage.Login("Admin", "admin123");
-        loginPage.incomeReport();
-        reports.notDeleteReport();
+    public void notDeleteReport() {
+        ReportsPage reportsPage = new ReportsPage(driver);
+        logInReport("Admin", "admin123");
+        reportsPage.notDeleteReport();
     }
 
     @Test
-    public void modifyNameReport() throws InterruptedException {
-        reports = new ReportsPage(driver);
-        loginPage.Login("Admin", "admin123");
-        loginPage.incomeReport();
-        reports.modifyReport("etc");
+    public void modifyNameReport()  {
+        ReportsPage reportsPage = new ReportsPage(driver);
+        logInReport("Admin", "admin123");
+        reportsPage.modifyReport("etc");
     }
 
     @Test
-    public void searchNameReport() throws InterruptedException {
-        loginPage = new LoginPage(driver);
-        reports = new ReportsPage(driver);
-        loginPage.Login("Admin", "admin123");
-        loginPage.incomeReport();
-        reports.SearchReport("All");
-        Assert.assertEquals(true, reports.validationMessageReport());
+    public void searchNameReport(){
+        ReportsPage reportsPage = new ReportsPage(driver);
+        logInReport("Admin", "admin123");
+        reportsPage.SearchReport("All");
+        Assert.assertEquals(true, reportsPage.validationMessageReport());
     }
 
 }

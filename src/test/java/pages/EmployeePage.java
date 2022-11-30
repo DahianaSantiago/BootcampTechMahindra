@@ -14,41 +14,36 @@ public class EmployeePage extends BasePage {
     }
 
     @FindBy(xpath = "//button[text()=' Add ']")
-            public WebElement addButton;
+    public WebElement addButton;
 
     @FindBy(xpath = "//span[text()='PIM']")
     public WebElement pimButton;
-
-   // @FindBy(className ="oxd-text oxd-text--h6 --strong" )
-    //public WebElement ValidationName;
-
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[2]/div/div/div[2]/input")
     public WebElement validationNumber;
     @FindBy(xpath = "(//input[@class='oxd-input oxd-input--active'])[3]")
     public WebElement secondValidationNumber;
     @FindBy(name = "firstName")
-            public WebElement nameEmployee;
+    public WebElement nameEmployee;
     @FindBy(name = "lastName")
     public WebElement lastNameEmployee;
     @FindBy(xpath = "//button[text()=' Save ']")
-    public WebElement saveButton ;
+    public WebElement saveButton;
     @FindBy(xpath = "(//input[@class='oxd-input oxd-input--active'])[2]")
     public WebElement searchEmployeeField;
     @FindBy(xpath = "//button[text()=' Search ']")
     public WebElement searchEmployeeButton;
-    @FindBy(xpath ="//div[text()='0007']" )
-            public WebElement idNumberSearch;
+    @FindBy(xpath = "//div[text()='0007']")
+    public WebElement idNumberSearch;
     @FindBy(xpath = "//span[text()='No Records Found']")
-            public WebElement noFoundEmployee;
+    public WebElement noFoundEmployee;
     @FindBy(css = "button[class='oxd-icon-button oxd-table-cell-action-space']")
     public List<WebElement> deleteEmployee;
     @FindBy(xpath = "//button[text()=' Yes, Delete ']")
     public WebElement deleteEmployeeButton;
-    @FindBy (xpath = "/html/body/div/div[2]/div")
-            public WebElement deleteMessage;
-    @FindBy (xpath = "//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[3]/div/div[2]/div/div/input")
-            public WebElement searchEmployeeWithName;
-
+    @FindBy(xpath = "/html/body/div/div[2]/div")
+    public WebElement deleteMessage;
+    @FindBy(xpath = "//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[3]/div/div[2]/div/div/input")
+    public WebElement searchEmployeeWithName;
     @FindBy(xpath = "//span[text()='Admin']")
     public WebElement adminButton;
 
@@ -63,7 +58,7 @@ public class EmployeePage extends BasePage {
         saveButton.click();
     }
 
-    public void serchEmployee(String num) throws InterruptedException {
+    public void serchEmployee(String num) {
         pimButton.click();
         searchEmployeeField.sendKeys(num);
         WaitUntilElementVisible(searchEmployeeButton);
@@ -71,21 +66,19 @@ public class EmployeePage extends BasePage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
     }
 
-    public void deleteEmployee() throws InterruptedException {
+    public void deleteEmployee() {
         adminButton.click();
         deleteEmployee.get(10).click();
         WaitUntilElementVisible(deleteEmployeeButton);
         deleteEmployeeButton.click();
-        Thread.sleep(2000);
+        WaitUntilElementVisible(deleteMessage);
     }
 
-    public void searchEmployeeWithNames() throws InterruptedException {
+    public void searchEmployeeWithNames(){
         adminButton.click();
         WaitUntilElementVisible(searchEmployeeWithName);
         searchEmployeeWithName.sendKeys("Tester Testing");
-        //scrollDown(SearchEmployeeWithName);
         searchEmployeeButton.click();
-        Thread.sleep(2000);
     }
 
     public boolean deleteEmployeeValidation() {
@@ -100,9 +93,5 @@ public class EmployeePage extends BasePage {
         return idNumberSearch.getText();
     }
 
-    public String validateNumbers() {
-        return secondValidationNumber.getText();
-
-    }
 
 }

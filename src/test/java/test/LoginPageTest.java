@@ -5,87 +5,77 @@ import org.testng.annotations.Test;
 import pages.EmployeePage;
 import pages.LoginPage;
 
-import java.time.Duration;
-
 import static org.testng.AssertJUnit.assertEquals;
-
+import static org.testng.AssertJUnit.assertTrue;
+import static utils.Constants.ADMIN;
+import static utils.Constants.PASSWORD_LOGIN;
 
 public class LoginPageTest extends BasePageTest {
 
-    EmployeePage employeePage;
-
     @Test
-    public void loginSuccessful() throws InterruptedException {
+    public void loginSuccessful() {
         LoginPage loginPage = new LoginPage(driver);
-        logIn("Admin", "admin123");
-        Assert.assertEquals(true,loginPage.loginSuccessfulVerify());
+        logIn(ADMIN, PASSWORD_LOGIN);
+        assertTrue(loginPage.loginSuccessfulVerify());
     }
 
-
     @Test
-    public void loginNotSuccessful() throws InterruptedException {
+    public void loginNotSuccessful() {
         LoginPage loginPage = new LoginPage(driver);
-        logIn("Admin", "noadmin123");
+        logIn(ADMIN, "noadmin123");
         assertEquals("Invalid credentials", loginPage.loginNotSuccessful());
     }
 
-    //@Title("Login without credencials")
     @Test
-    public void loginWithoutCredencials() throws InterruptedException {
+    public void loginWithoutCredencials() {
         LoginPage loginPage = new LoginPage(driver);
         logIn(" ", " ");
         assertEquals("Required", loginPage.withoutCredentials());
     }
 
-   // @Title("Logout Successful")
     @Test
-    public void logout(){
+    public void logout() {
         LoginPage loginPage = new LoginPage(driver);
-        logIn("Admin", "admin123");
+        logIn(ADMIN, PASSWORD_LOGIN);
         loginPage.Logout();
-        Assert.assertEquals(true,loginPage.logoutSuccessful());
+        assertTrue(loginPage.logoutSuccessful());
     }
 
     @Test
-    public void addEmployee() throws InterruptedException {
+    public void addEmployee(){
         EmployeePage employeePage = new EmployeePage(driver);
-        logIn("Admin", "admin123");
+        logIn(ADMIN, PASSWORD_LOGIN);
         employeePage.addEmployee("Dahia", "Santiago");
     }
 
     @Test
-    public void searchEmployee() throws InterruptedException {
-        employeePage = new EmployeePage(driver);
-        logIn("Admin", "admin123");
+    public void searchEmployee() {
+        EmployeePage employeePage = new EmployeePage(driver);
+        logIn(ADMIN, PASSWORD_LOGIN);
         employeePage.serchEmployee("0007");
         assertEquals("0007", employeePage.validateId());
     }
 
-    //@Title("Search for non existent employee")
     @Test
-    public void searchNoEmployee() throws InterruptedException {
-        //loginPage = new LoginPage(driver);
-        employeePage = new EmployeePage(driver);
-        logIn("Admin", "admin123");
+    public void searchNoEmployee(){
+        EmployeePage employeePage = new EmployeePage(driver);
+        logIn(ADMIN, PASSWORD_LOGIN);
         employeePage.serchEmployee("000000");
         assertEquals("No Records Found", employeePage.validateNoFound());
     }
 
-  //  @Title("Delete an employee")
     @Test
-    public void deleteEmployee() throws InterruptedException {
-        //loginPage = new LoginPage(driver);
-        employeePage = new EmployeePage(driver);
-        logIn("Admin", "admin123");
+    public void deleteEmployee() {
+        EmployeePage employeePage = new EmployeePage(driver);
+        logIn(ADMIN, PASSWORD_LOGIN);
         employeePage.deleteEmployee();
-        assertEquals(true, employeePage.deleteEmployeeValidation());
+        assertTrue(employeePage.deleteEmployeeValidation());
     }
 
-   // @Title("Search an employee with name")
     @Test
-    public void searchEmployeeWithName() throws InterruptedException {
-        employeePage = new EmployeePage(driver);
-        logIn("Admin", "admin123");
+    public void searchEmployeeWithName(){
+        EmployeePage employeePage = new EmployeePage(driver);
+        logIn(ADMIN, PASSWORD_LOGIN);
         employeePage.searchEmployeeWithNames();
     }
 

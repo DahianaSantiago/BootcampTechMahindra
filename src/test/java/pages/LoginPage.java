@@ -6,8 +6,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
-    private WebDriver driver;
-
     @FindBy(name = "username")
     public WebElement userName;
     @FindBy(name = "password")
@@ -26,6 +24,9 @@ public class LoginPage extends BasePage {
     public WebElement incomeReports;
     @FindBy(xpath = "//span[text()='Admin']")
     public WebElement adminButton;
+    @FindBy(xpath = "//span[text()='PIM']")
+    public WebElement pimButton;
+
 
 
     public LoginPage(WebDriver driver) {
@@ -39,6 +40,26 @@ public class LoginPage extends BasePage {
         loginButton.click();
 
     }
+
+    public void loginAdmin(String user, String psw)  {
+        WaitUntilElementVisible(userName);
+        userName.sendKeys(user);
+        password.sendKeys(psw);
+        loginButton.click();
+        adminButton.click();
+    }
+
+    public void loginReport(String user, String psw)  {
+        WaitUntilElementVisible(userName);
+        userName.sendKeys(user);
+        password.sendKeys(psw);
+        loginButton.click();
+        pimButton.click();
+        WaitUntilElementVisible(incomeReports);
+        incomeReports.click();
+    }
+
+
 
     public Boolean loginSuccessfulVerify() {
         return isDisplayed(loginSuccessful);
@@ -62,12 +83,5 @@ public class LoginPage extends BasePage {
         logout.click();
     }
 
-    public void incomeReport() throws InterruptedException {
-        incomeReports.click();
-        Thread.sleep(1000);
-    }
 
-    public void admin() {
-        adminButton.click();
-    }
 }

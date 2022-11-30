@@ -5,9 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import pages.LoginPage;
 
 import java.time.Duration;
@@ -36,18 +34,26 @@ public class BasePageTest {
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get(url);
+
     }
 
     @AfterMethod
     public void closeBrowser() {
         driver.close();
     }
+
     public void logIn(String user, String password) {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.Login(user, password);
     }
 
+    public void logInAdmin(String user, String password) {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.loginAdmin(user, password);
+    }
 
-
-
+    public void logInReport(String user, String password) {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.loginReport(user, password);
+    }
 }

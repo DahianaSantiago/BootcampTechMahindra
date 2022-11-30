@@ -44,51 +44,50 @@ public class ReportsPage extends BasePage {
     @FindBy(css = "div[class='oxd-table-cell oxd-padding-cell']:nth-child(2)")
     public WebElement searchText;
 
-    public void addReport(String report) throws InterruptedException {
-        Thread.sleep(1000);
+
+    public void addReport(String report) {
+        WaitUntilElementVisible(addButton);
         addButton.click();
-        Thread.sleep(2000);
+        WaitUntilElementVisible(reportName);
         reportName.sendKeys(report);
-        Thread.sleep(2000);
+        WaitUntilElementVisible(displayFileds.get(2));
         displayFileds.get(2).click();
-        Thread.sleep(1000);
+        WaitUntilElementVisible(valuesDisplayFiledsOne);
         valuesDisplayFiledsOne.click();
-        //click(displayFiledsTwo);
         displayFileds.get(3).click();
         ValuesDisplayFiledsTwo.click();
         buttonPlus.get(1).click();
         buttonSave.click();
     }
 
-    public void deleteReport() throws InterruptedException {
-        Thread.sleep(1000);
+    public void deleteReport()  {
+        WaitUntilElementVisible(updateRecord.get(0));
         updateRecord.get(0).click();
         yesDelete.click();
-        Thread.sleep(1000);
+        WaitUntilElementVisible(validationDelete);
     }
 
-    public void notDeleteReport() throws InterruptedException {
-        Thread.sleep(2000);
+    public void notDeleteReport(){
+        WaitUntilElementVisible(updateRecord.get(0));
         updateRecord.get(0).click();
-        Thread.sleep(2000);
+        WaitUntilElementVisible(notDelete);
         notDelete.click();
-        Thread.sleep(3000);
     }
 
-    public void modifyReport(String reportName) throws InterruptedException {
+    public void modifyReport(String reportName) {
         updateRecord.get(1).click();
-        Thread.sleep(1000);
+        WaitUntilElementVisible(updateReportName.get(1));
         updateReportName.get(1).sendKeys(reportName);
         buttonSave.click();
 
     }
 
-    public void SearchReport(String nameReport) throws InterruptedException {
+    public void SearchReport(String nameReport) {
         searchReport.sendKeys(nameReport);
-        Thread.sleep(1000);
+        WaitUntilElementVisible(searchReport);
         searchReport.sendKeys(Keys.ARROW_DOWN);
         searchButton.click();
-        Thread.sleep(2000);
+        WaitUntilElementVisible(searchText);
     }
 
     public Boolean validationMessage() {
