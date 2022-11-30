@@ -1,14 +1,13 @@
 package test;
 
-import org.testng.Assert;
+
 import org.testng.annotations.Test;
 import pages.EmployeePage;
 import pages.LoginPage;
-
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
-import static utils.Constants.ADMIN;
-import static utils.Constants.PASSWORD_LOGIN;
+import static utils.Constants.*;
+
 
 public class LoginPageTest extends BasePageTest {
 
@@ -22,7 +21,7 @@ public class LoginPageTest extends BasePageTest {
     @Test
     public void loginNotSuccessful() {
         LoginPage loginPage = new LoginPage(driver);
-        logIn(ADMIN, "noadmin123");
+        logIn(ADMIN, WRONG_PASSWORD);
         assertEquals("Invalid credentials", loginPage.loginNotSuccessful());
     }
 
@@ -45,15 +44,15 @@ public class LoginPageTest extends BasePageTest {
     public void addEmployee(){
         EmployeePage employeePage = new EmployeePage(driver);
         logIn(ADMIN, PASSWORD_LOGIN);
-        employeePage.addEmployee("Dahia", "Santiago");
+        employeePage.addEmployee(NAME_EMPLOYEE, LASTNAME_EMPLOYEE);
     }
 
     @Test
     public void searchEmployee() {
         EmployeePage employeePage = new EmployeePage(driver);
         logIn(ADMIN, PASSWORD_LOGIN);
-        employeePage.serchEmployee("0007");
-        assertEquals("0007", employeePage.validateId());
+        employeePage.serchEmployee(NUMBER_EMPLOYEE);
+        assertEquals(NUMBER_EMPLOYEE, employeePage.validateId());
     }
 
     @Test
