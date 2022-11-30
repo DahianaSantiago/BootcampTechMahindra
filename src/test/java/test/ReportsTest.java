@@ -1,16 +1,11 @@
 package test;
-import io.cucumber.java.Before;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+
 import org.testng.annotations.Test;
-import pages.EmployeePage;
-import pages.LoginPage;
 import pages.ReportsPage;
 
-import static test.BasePageTest.driver;
-
+import static org.testng.AssertJUnit.assertTrue;
+import static utils.Constants.*;
+import static utils.Methods.*;
 
 public class ReportsTest extends BasePageTest{
 
@@ -18,40 +13,39 @@ public class ReportsTest extends BasePageTest{
     @Test
     public void addReport() {
         ReportsPage reportsPage = new ReportsPage(driver);
-        logInReport("Admin", "admin123");
-        int random = (int) Math.rint(Math.random());
-        reportsPage.addReport("report number " + random);
+        logInReport(ADMIN, PASSWORD_LOGIN);
+        reportsPage.addReport("report number " + randomNumbers());
     }
 
     @Test
     public void deleteReport(){
         ReportsPage reportsPage = new ReportsPage(driver);
-        logInReport("Admin", "admin123");
+        logInReport(ADMIN, PASSWORD_LOGIN);
         reportsPage.deleteReport();
-        Assert.assertEquals(true, reportsPage.validationMessage());
+        assertTrue(reportsPage.validationMessage());
 
     }
 
     @Test
     public void notDeleteReport() {
         ReportsPage reportsPage = new ReportsPage(driver);
-        logInReport("Admin", "admin123");
+        logInReport(ADMIN, PASSWORD_LOGIN);
         reportsPage.notDeleteReport();
     }
 
     @Test
     public void modifyNameReport()  {
         ReportsPage reportsPage = new ReportsPage(driver);
-        logInReport("Admin", "admin123");
+        logInReport(ADMIN, PASSWORD_LOGIN);
         reportsPage.modifyReport("etc");
     }
 
     @Test
     public void searchNameReport(){
         ReportsPage reportsPage = new ReportsPage(driver);
-        logInReport("Admin", "admin123");
+        logInReport(ADMIN, PASSWORD_LOGIN);
         reportsPage.SearchReport("All");
-        Assert.assertEquals(true, reportsPage.validationMessageReport());
+        assertTrue(reportsPage.validationMessageReport());
     }
 
 }

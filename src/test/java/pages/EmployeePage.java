@@ -15,13 +15,8 @@ public class EmployeePage extends BasePage {
 
     @FindBy(xpath = "//button[text()=' Add ']")
     public WebElement addButton;
-
     @FindBy(xpath = "//span[text()='PIM']")
     public WebElement pimButton;
-    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[2]/div/div/div[2]/input")
-    public WebElement validationNumber;
-    @FindBy(xpath = "(//input[@class='oxd-input oxd-input--active'])[3]")
-    public WebElement secondValidationNumber;
     @FindBy(name = "firstName")
     public WebElement nameEmployee;
     @FindBy(name = "lastName")

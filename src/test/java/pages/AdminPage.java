@@ -8,6 +8,7 @@ import java.util.List;
 
 
 import static utils.Constants.*;
+import static utils.Methods.randomNumbers;
 
 public class AdminPage extends BasePage {
 
@@ -102,14 +103,13 @@ public class AdminPage extends BasePage {
         optionsStatus.get(1).click();
         employeeName.sendKeys(NAME);
         selectName.click();
-        int random = (int) Math.rint(Math.random() * 10); // hacer un metodo general
-        userName.sendKeys(USERNAME + random);
+        userName.sendKeys(USERNAME + randomNumbers());
         password.get(0).sendKeys(PASSWORD);
         password.get(1).sendKeys(PASSWORD);
         buttonSave.click();
     }
 
-    public void deleteUser() throws InterruptedException {
+    public void deleteUser() {
         WaitUntilElementVisible(deleteUser);
         deleteUser.click();
         yesDelete.click();
